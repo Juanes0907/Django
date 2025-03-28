@@ -1,4 +1,5 @@
 # Django
+Por favor cambiar de rama a master y de ahí ya se puede mirar el código del proyecto
 Para empezar, se tiene que inicializar el servidor con el comando python manage.py runserver.
 Para poder ver algunas de las vistas del proyecto es necesario copiar este link en la URL: http://127.0.0.1:8000/register/.
 A partir de aquí se abre una página para poder hacer un registro. A la hora de ingresar los credenciales se habilitan las vistas de Crear Tarea y Lista de Tareas.
