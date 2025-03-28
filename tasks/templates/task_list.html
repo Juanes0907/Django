@@ -1,0 +1,20 @@
+{% extends 'principal.html' %}
+
+{% block content %}
+<h2>Lista de Tareas</h2>
+
+<ul class="list-group">
+    {% for task in tasks %}
+        <li class="list-group-item">
+            <a href="{% url 'task_detail' task.pk %}">{{ task.title }}</a>
+            {% if not task.completed %}
+                <a href="{% url 'complete_task' task.pk %}" class="btn btn-success btn-sm float-right ml-2">Marcar como completada</a>
+            {% endif %}
+            <a href="{% url 'task_edit' task.pk %}" class="btn btn-warning btn-sm float-right ml-2">Editar</a>
+            <a href="{% url 'task_delete' task.pk %}" class="btn btn-danger btn-sm float-right ml-2">Eliminar</a>
+        </li>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+
