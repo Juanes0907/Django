@@ -4,6 +4,9 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 from .models import Task
 from .forms import TaskForm
+from rest_framework import viewsets
+from .models import Task
+from .serializers import TaskSerializer
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
@@ -18,8 +21,8 @@ def register(request):
 
 def login_view(request):
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
+        username = request.POST['username']
+        password = request.POST['password']
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
@@ -78,3 +81,8 @@ def delete_task(request, pk):
         task.delete()
         return redirect('task_list')
     return render(request, 'task_delete.html', {'task': task})
+
+
+class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
+    serializer_class = TaskSerializer

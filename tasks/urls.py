@@ -1,5 +1,10 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework.routers import DefaultRouter
+from .views import TaskViewSet
+
+router = DefaultRouter()
+router.register(r'tasks', TaskViewSet)
 
 urlpatterns = [
     path('register/', views.register, name='register'),
@@ -11,5 +16,6 @@ urlpatterns = [
     path('tasks/<int:pk>/edit/', views.task_edit, name='task_edit'), 
     path('tasks/<int:pk>/complete/', views.complete_task, name='complete_task'),
     path('tasks/<int:pk>/delete/', views.delete_task, name='task_delete'),
+    path('api/', include(router.urls))
 ]
 
